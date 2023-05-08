@@ -6,16 +6,16 @@ async function copyDir(directory, copyDrectory) {
   await dellDir(copyDirect);
   await fs.mkdir(copyDirect, { recursive: true });
   let items = await fs.readdir(direct, { withFileTypes: true });
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].isDirectory()) {
+  for (const element of items) {
+    if (element.isDirectory()) {
       copyDir(
-        path.normalize(`${directory}/${items[i].name}`),
-        path.normalize(`${copyDirect}/${items[i].name}`)
+        path.normalize(`${directory}/${element.name}`),
+        path.normalize(`${copyDirect}/${element.name}`)
       );
     } else {
       await fs.copyFile(
-        path.normalize(direct + "/" + items[i].name),
-        path.normalize(copyDirect + "/" + items[i].name)
+        path.normalize(direct + "/" + element.name),
+        path.normalize(copyDirect + "/" + element.name)
       );
     }
   }
