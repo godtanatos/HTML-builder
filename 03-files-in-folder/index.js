@@ -4,11 +4,11 @@ let directory = "secret-folder";
 function findOutFiles(directory) {
   let direct = directory;
   fs.readdir(direct, { withFileTypes: true }, function (err, items) {
-    for (var i = 0; i < items.length; i++) {
-      if (items[i].isFile()) {
-        let obj = path.parse(direct + "/" + items[i]["name"]);
+    for (const element of items) {
+      if (element.isFile()) {
+        let obj = path.parse(direct + "/" + element["name"]);
         fs.stat(
-          path.normalize(direct + "/" + items[i]["name"]),
+          path.normalize(direct + "/" + element["name"]),
           (err, stats) => {
             console.log(
               obj.name +
@@ -20,9 +20,7 @@ function findOutFiles(directory) {
             );
           }
         );
-      } /* if (items[i].isDirectory()) {
-        findOutFiles(path.normalize(direct + '/' + items[i]['name']));
-      }*/
+      }
     }
   });
 }

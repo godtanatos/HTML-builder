@@ -20,7 +20,6 @@ process.stdin.on("keypress", (chunk, key) => {
   fs.readFile(path.resolve(__dirname, `hello.txt`), "utf8", (error, data) => {
     if (key.sequence === "\r") {
       data += "\r\n";
-      console.log(data);
     } else {
       let reg = new RegExp(`${oldRline}$`, "g");
       data = data.replace(reg, "");
