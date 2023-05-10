@@ -51,7 +51,7 @@ async function bandleCssFiles(folder) {
       let obj = path.parse(currentFolder + "/" + element["name"]);
       if (obj.ext == ".css") {
         let currentFile = await fs.readFile(
-          path.normalize(currentFolder + "/" + elementname),
+          path.normalize(currentFolder + "/" + element.name),
           "utf8"
         );
         await fs.appendFile(__dirname + "/project-dist/style.css", currentFile);
